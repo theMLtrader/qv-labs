@@ -12,16 +12,25 @@ import {
 } from "@chakra-ui/react";
 import {HiOutlineMenu} from "react-icons/hi";
 import {NavLink} from "react-router-dom";
+import { useMoralis } from 'react-moralis';
 
 export const Header = () => {
-    const {isOpen, onOpen, onClose} = useDisclosure();
+    const {isOpen, onOpen, onClose} = useDisclosure()
+    const { authenticate, user } = useMoralis();
 
     return (
         <Box mt={10}>
             <Flex justifyContent={'space-around'} alignItems={'center'}>
                 <HiOutlineMenu onClick={onOpen} fontSize="40px" cursor={'pointer'}/>
                 <Heading fontSize="50px">QV-Labs</Heading>
+                {!user && (
+                    <Button onClick={() => authenticate()}>Connect Wallet</Button>
+                )}
+                {user && (
+                    <Badge>{user?.get('ethAddress')}</Badge>
+                )}
             </Flex>
+
 
             <Drawer
                 isOpen={isOpen}
@@ -47,4 +56,4 @@ export const Header = () => {
             </Drawer>
         </Box>
     )
-}
+}"
