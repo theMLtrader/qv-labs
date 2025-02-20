@@ -13,7 +13,7 @@ const Homepage = () => {
         <Box mb={10}>
             <Box mt={10}>
                 <Center>
-                    <Image loading="lazy" src="./qv-labs.jpeg"/>
+                    <Image loading="lazy" src="./qvlabs.jpg"/>
                 </Center>
             </Box>
 
